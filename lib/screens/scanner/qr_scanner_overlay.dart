@@ -20,7 +20,7 @@ class QRScannerOverlay extends StatelessWidget {
           children: [
             Container(
               decoration: const BoxDecoration(
-                  color: Colors.red,
+                  color: Colors.green,
                   backgroundBlendMode: BlendMode
                       .dstOut), // This one will handle background + difference out
             ),
