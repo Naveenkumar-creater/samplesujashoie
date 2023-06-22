@@ -21,23 +21,23 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-// class LoginScreenTopImage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       children: [
-//         Container(
-//           width: 360,
-//           child: Column(
-//             children: [
-//               SizedBox(width:200, child: Lottie.asset('animations/142230-login.json'))
-//             ],
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
+class LoginScreenTopImage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          width: 360,
+          child: Column(
+            children: [
+              SizedBox(width:200, child: Lottie.asset('animations/142230-login.json'))
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
 
 class Loginform extends StatelessWidget {
   const Loginform({super.key});
