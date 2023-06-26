@@ -109,11 +109,11 @@ class GridViewContent extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(defaultPadding),
           decoration: BoxDecoration(
-              color: Colors.grey.shade300,
+              color: Colors.grey.shade200,
               borderRadius: BorderRadius.all(Radius.circular(10)),
               boxShadow: [
                 BoxShadow(
-                    color: Colors.grey.shade500,
+                    color: Colors.grey.shade400,
                     offset: Offset(4.0, 4.0),
                     blurRadius: 15.0,
                     spreadRadius: 1.0),
@@ -122,7 +122,8 @@ class GridViewContent extends StatelessWidget {
                     offset: Offset(-4.0, -4.0),
                     blurRadius: 15.0,
                     spreadRadius: 1.0)
-              ]),
+              ]
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

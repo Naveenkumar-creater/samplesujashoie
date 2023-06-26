@@ -1,12 +1,17 @@
+import 'package:provider/provider.dart';
 import 'package:sujashoei/constants/global_variables.dart';
 import 'package:sujashoei/screens/login/login_page.dart';
-import 'package:sujashoei/screens/main/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sujashoei/screens/scanner/qr_scanner.dart';
-
+import 'package:sujashoei/provider/global_provider.dart';
+import 'package:sujashoei/screens/splashscreen/splash_screen.dart';
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => TabProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +27,8 @@ class MyApp extends StatelessWidget {
             .apply(bodyColor: Colors.white),
         canvasColor: secondaryColor
       ),
-      home: LoginPage(),
+      home: SplashScreen(),
+
     );
   }
 }

@@ -15,7 +15,7 @@ class QRScannerOverlay extends StatelessWidget {
     return Stack(children: [
       ColorFiltered(
         colorFilter: ColorFilter.mode(
-            overlayColour, BlendMode.srcOut), // This one will create the magic
+            overlayColour,BlendMode.srcOut), // This one will create the magic
         child: Stack(
           children: [
             Container(
@@ -101,7 +101,7 @@ class BorderPainter extends CustomPainter {
     canvas.drawRRect(
       rrect,
       Paint()
-        ..color = Colors.white
+        ..color = Colors.blue
         ..style = PaintingStyle.stroke
         ..strokeWidth = width,
     );
@@ -113,34 +113,34 @@ class BorderPainter extends CustomPainter {
   }
 }
 
-class BarReaderSize {
-  static double width = 200;
-  static double height = 200;
-}
-
-class OverlayWithHolePainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()..color = Colors.black54;
-    canvas.drawPath(
-        Path.combine(
-          PathOperation.difference,
-          Path()..addRect(Rect.fromLTWH(0, 0, size.width, size.height)),
-          Path()
-            ..addOval(Rect.fromCircle(
-                center: Offset(size.width - 44, size.height - 44), radius: 40))
-            ..close(),
-        ),
-        paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
-  }
-}
-
-@override
-bool shouldRepaint(CustomPainter oldDelegate) {
-  return false;
-}
+// class BarReaderSize {
+//   static double width = 200;
+//   static double height = 200;
+// }
+//
+// class OverlayWithHolePainter extends CustomPainter {
+//   @override
+//   void paint(Canvas canvas, Size size) {
+//     final paint = Paint()..color = Colors.black54;
+//     canvas.drawPath(
+//         Path.combine(
+//           PathOperation.difference,
+//           Path()..addRect(Rect.fromLTWH(0, 0, size.width, size.height)),
+//           Path()
+//             ..addOval(Rect.fromCircle(
+//                 center: Offset(size.width - 44, size.height - 44), radius: 40))
+//             ..close(),
+//         ),
+//         paint);
+//   }
+//
+//   @override
+//   bool shouldRepaint(CustomPainter oldDelegate) {
+//     return false;
+//   }
+// }
+//
+// @override
+// bool shouldRepaint(CustomPainter oldDelegate) {
+//   return false;
+// }

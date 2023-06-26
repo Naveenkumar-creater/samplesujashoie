@@ -1,44 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:sujashoei/constants/global_variables.dart';
-import 'package:sujashoei/responsive.dart';
+import 'package:sujashoei/provider/global_provider.dart';
 import 'package:sujashoei/screens/main/dummy_dash.dart';
+import 'package:sujashoei/screens/main/mainscreen/widgets/work_orders_screen.dart';
 import '../../constants/font_registry.dart';
-import 'components/work_order_grid.dart';
 
-class MainScreen extends StatefulWidget {
-  @override
-  _MainScreenState createState() => _MainScreenState();
-}
+class MainScreen extends StatelessWidget {
 
-class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 0;
-
-  static List<Widget> _widgetOptions = <Widget>[
+  static List<Widget> _bottomWidgets = <Widget>[
     WorkOrdersScreen(),
     DummyDashboard(),
     AssetsScreen(),
     MessagesScreen(),
     MoreScreen(),
   ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  void _openSettingsPage() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => SettingsPage(),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    void _openSettingsPage() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => SettingsPage(),
+        ),
+      );
+    }
+    final tabProvider=Provider.of<TabProvider>(context);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(120),
@@ -47,12 +34,8 @@ class _MainScreenState extends State<MainScreen> {
           backgroundColor: primaryColor,
           title: Row(
             children: [
-              Text(
-                'Hello, Sivabala!',
-                style: TextStyle(
-                  fontSize: defaultPadding,
-                ),
-              ),
+              Headings(subHeading: 'Hello, Sivabala!',),
+
               Spacer(),
               Column(
                 children: [
@@ -91,7 +74,7 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
       body: SafeArea(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: _bottomWidgets[tabProvider.selectedIndex],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -116,63 +99,11 @@ class _MainScreenState extends State<MainScreen> {
             label: 'More',
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: tabProvider.selectedIndex,
         selectedItemColor: primaryColor,
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
-        onTap: _onItemTapped,
-      ),
-    );
-  }
-}
-
-class WorkOrdersScreen extends StatelessWidget {
-  var index;
-
-  @override
-  Widget build(BuildContext context) {
-    Size size= MediaQuery.of(context).size;
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(defaultPadding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Headings(
-              heading: 'Work Orders Status',
-            ),
-            WorkOrdersGridView(),
-            SizedBox(height: defaultPadding,),
-            Headings(
-              subHeading: 'Scan QR',
-            ),SizedBox(height: defaultPadding*4),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  height: 250,
-                  width: 250,
-                  decoration: BoxDecoration(
-                      color: Colors.grey.shade300,
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey.shade500,
-                            offset: Offset(4.0, 4.0),
-                            blurRadius: 15.0,
-                            spreadRadius: 1.0),
-                        BoxShadow(
-                            color: Colors.white,
-                            offset: Offset(-4.0, -4.0),
-                            blurRadius: 15.0,
-                            spreadRadius: 1.0)
-                      ]),
-                  child: Lottie.asset('animations/5427-scan-qr-code.json'),
-                ),
-              ],
-            )
-          ],
-        ),
+        onTap:(index)=> tabProvider.setSelectedIndex(index),
       ),
     );
   }

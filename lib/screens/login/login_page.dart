@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lottie/lottie.dart';
+import 'package:sujashoei/screens/main/main_screen.dart';
+
 import '../../constants/global_variables.dart';
 import '../../responsive.dart';
+import '../main/mainscreen/widgets/work_orders_screen.dart';
 
 
 class LoginPage extends StatelessWidget {
@@ -105,9 +108,9 @@ class Loginform extends StatelessWidget {
                 width: double.infinity,
                 height: 50,
                 child: Center(child: Text("Sign In"))),
-            onPressed: () => print("it's pressed"),
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen(),)),
             style: ElevatedButton.styleFrom(
-              primary: Colors.deepPurple,
+              primary: primaryColor,
               onPrimary: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
